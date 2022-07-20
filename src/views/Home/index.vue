@@ -73,6 +73,7 @@
 // 一级 el-menu -> el-menu-item
 // 二级 el-menu -> el-submenu -> el-menu
 // 组件名就是类名
+import { clearToken, clearStamp } from '@/utils/token'
 export default {
   name: 'Home',
   created () { },
@@ -82,8 +83,13 @@ export default {
   methods: {
     // 退出
     async logout () {
-      // 清除token
+      // 清除vuex中token
       await this.$store.commit('login/updateToken')
+      // 清除本地存储的token
+      clearToken()
+      // 清除token时间戳
+      clearStamp()
+      // 跳转登录
       this.$router.push('/login')
     }
   },

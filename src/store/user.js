@@ -13,6 +13,7 @@ export default {
     // 获取用户列表
     async UserList ({ state, commit }) {
       const res = await getUserList({ pagenum: state.pagenum, pagesize: state.pagesize })
+      console.log(res)
       const { users } = res.data.data
       commit('updateUserList', users)
     },
